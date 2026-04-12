@@ -1,105 +1,46 @@
-<!DOCTYPE html>
+<!-- ===================== SHARED STYLES ===================== -->
+<style>
+:root { --primary:#5a3e2b; --accent:#c89b6d; --bg:#f4efe6; --card:#fff; --text:#2f2a24; }
+body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text);} 
+header{background:var(--primary);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700}
+nav a{color:#fff;margin-left:18px;text-decoration:none;opacity:.85}
+nav a.active{opacity:1;border-bottom:2px solid var(--accent)}
+.hero{padding:90px 20px;text-align:center;max-width:900px;margin:auto}
+.hero h1{font-size:2.6em;margin-bottom:10px}
+input{padding:12px;border-radius:6px;border:1px solid #ccc}
+button{padding:12px 18px;border:none;border-radius:6px;background:var(--primary);color:#fff;cursor:pointer}
+section{padding:70px 20px;max-width:1000px;margin:auto}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{background:var(--card);padding:25px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.08);transition:.25s}
+.card:hover{transform:translateY(-5px)}
+.highlight{background:#fff7ec;border-left:5px solid var(--primary);padding:20px;border-radius:8px}
+footer{text-align:center;padding:30px;background:#e0d7c9;margin-top:40px}
+</style>
+
+<script>
+function setActive(){
+  const links=document.querySelectorAll('nav a');
+  links.forEach(l=>{ if(location.pathname.endsWith(l.getAttribute('href'))) l.classList.add('active'); });
+}
+</script>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StallVantage</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #f4efe6;
-      color: #2f2a24;
-    }
-
-    header {
-      background: #5a3e2b;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .hero {
-      padding: 80px 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .hero h1 {
-      font-size: 2.8em;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 1.2em;
-      opacity: 0.9;
-    }
-
-    .cta {
-      margin-top: 30px;
-    }
-
-    input {
-      padding: 12px;
-      width: 250px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      padding: 12px 18px;
-      border-radius: 6px;
-      border: none;
-      background: #5a3e2b;
-      color: white;
-      cursor: pointer;
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    }
-
-    .highlight {
-      background: #fff7ec;
-      border-left: 5px solid #5a3e2b;
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #e0d7c9;
-      margin-top: 40px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StallVantage</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-
+<body onload="setActive()">
 <header>
-  <h1>StallVantage</h1>
-  <p>Built for Market Vendors, Makers, and Small-Batch Businesses</p>
+<div class="logo">🐦 StallVantage</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="features.html">Features</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</nav>
 </header>
 
 <div class="hero">
@@ -110,13 +51,8 @@
   </p>
 
   <div class="cta">
-    <input type="email" placeholder="Enter your email">
-    <button>Join the Waitlist</button>
-  </div>
-
-  <p style="margin-top:15px; font-size:0.9em; opacity:0.7;">
-    Launching soon — be first to try the beta
-  </p>
+    <input id="email" placeholder="Enter email">
+    <button onclick="joinWaitlist()">Join Waitlist</button>
 </div>
 
 <section>
@@ -227,5 +163,19 @@
   <p>© 2026 Crowe's Nest Productions</p>
 </footer>
 
+</body>
+</html>
+
+<script>
+const SUPABASE_URL="https://oezqtfyqdvzoqdnumazc.supabase.co";
+const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9lenF0ZnlxZHZ6b3FkbnVtYXpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDU2NzMsImV4cCI6MjA5MDcyMTY3M30.9w_UhQ4j4XsvZ5LSf30l0mdSL8aH9EIrSQfoiyy7PxI";
+async function joinWaitlist(){
+const email=document.getElementById("email").value;
+await fetch(`${SUPABASE_URL}/rest/v1/waitlist`,{
+method:"POST",
+headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
+body:JSON.stringify({email})});
+alert("Joined!");}
+</script>
 </body>
 </html>
