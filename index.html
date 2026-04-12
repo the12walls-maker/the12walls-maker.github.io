@@ -16,12 +16,26 @@ section{padding:70px 20px;max-width:1000px;margin:auto}
 .card:hover{transform:translateY(-5px)}
 .highlight{background:#fff7ec;border-left:5px solid var(--primary);padding:20px;border-radius:8px}
 footer{text-align:center;padding:30px;background:#e0d7c9;margin-top:40px}
+.app-ui{background:#2b2b2b;color:#fff;border-radius:16px;padding:20px;font-family:monospace}
+.app-row{display:flex;justify-content:space-between;margin-bottom:10px}
+.badge{background:#c89b6d;color:#000;padding:3px 8px;border-radius:6px;font-size:.8em}
 </style>
+
+
 
 <script>
 function setActive(){
   const links=document.querySelectorAll('nav a');
   links.forEach(l=>{ if(location.pathname.endsWith(l.getAttribute('href'))) l.classList.add('active'); });
+}
+function initAnimations(){
+ const cards=document.querySelectorAll('.card');
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+   if(e.isIntersecting){e.target.classList.add('visible');}
+  });
+ });
+ cards.forEach(c=>observer.observe(c));
 }
 </script>
 
@@ -32,7 +46,7 @@ function setActive(){
 <title>StallVantage</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-<body onload="setActive()">
+<body onload="setActive();initAnimations()">
 <header>
 <div class="logo">🐦 StallVantage</div>
 <nav>
@@ -52,8 +66,45 @@ function setActive(){
 
   <div class="cta">
     <input id="email" placeholder="Enter email">
-    <button onclick="joinWaitlist()">Join Waitlist</button>
+    <button id="btn" onclick="joinWaitlist('btn','email','msg')">Join Waitlist</button>
+    <p id="msg"></p>
 </div>
+
+
+<section>
+<h2>See StallVantage in Action</h2>
+<div class="features">
+
+<div class="card">
+<h3>📦 Can Make</h3>
+<div class="app-ui">
+<div class="app-row"><span>Sourdough</span><span class="badge">24</span></div>
+<div class="app-row"><span>Croissants</span><span class="badge">12</span></div>
+</div>
+<p>Live production capacity based on inventory.</p>
+</div>
+
+<div class="card">
+<h3>📊 Forecast</h3>
+<div class="app-ui">
+<div>Saturday Market → 18 units</div>
+<div>Sunday Fair → 10 units</div>
+</div>
+<p>Data-driven prep recommendations.</p>
+</div>
+
+<div class="card">
+<h3>🛠 Prep List</h3>
+<div class="app-ui">
+<div>✔ Croissants x12</div>
+<div>✔ Muffins x8</div>
+<div>⏳ Sourdough x6</div>
+</div>
+<p>Auto-generated production tasks.</p>
+</div>
+
+</div>
+</section>
 
 <section>
   <h2>Built for How You Actually Work</h2>
@@ -155,7 +206,8 @@ function setActive(){
   <h2>Join the Waitlist</h2>
   <div class="cta" style="text-align:center;">
     <input type="email" placeholder="Enter your email">
-    <button>Get Early Access</button>
+    <button id="btn" onclick="joinWaitlist('btn','email','msg')">Get Early Access</button>
+    <p id="msg"></p>
   </div>
 </section>
 
@@ -169,13 +221,36 @@ function setActive(){
 <script>
 const SUPABASE_URL="https://oezqtfyqdvzoqdnumazc.supabase.co";
 const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9lenF0ZnlxZHZ6b3FkbnVtYXpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDU2NzMsImV4cCI6MjA5MDcyMTY3M30.9w_UhQ4j4XsvZ5LSf30l0mdSL8aH9EIrSQfoiyy7PxI";
-async function joinWaitlist(){
-const email=document.getElementById("email").value;
-await fetch(`${SUPABASE_URL}/rest/v1/waitlist`,{
-method:"POST",
-headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
-body:JSON.stringify({email})});
-alert("Joined!");}
+function initAnimations(){
+ const cards=document.querySelectorAll('.card');
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+   if(e.isIntersecting){e.target.classList.add('visible');}
+  });
+ });
+ cards.forEach(c=>observer.observe(c));
+}
+
+// Waitlist UX
+async function joinWaitlist(btnId,inputId,msgId){
+ const email=document.getElementById(inputId).value;
+ const btn=document.getElementById(btnId);
+ const msg=document.getElementById(msgId);
+
+ if(!email){ msg.innerText="Enter an email"; return; }
+
+ btn.disabled=true;
+ btn.innerText="Joining...";
+
+ await fetch(`${SUPABASE_URL}/rest/v1/waitlist`,{
+  method:"POST",
+  headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
+  body:JSON.stringify({email})
+ });
+
+ msg.innerText="You're on the waitlist!";
+ btn.innerText="Joined";
+}
 </script>
 </body>
 </html>
