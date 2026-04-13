@@ -19,6 +19,27 @@ footer{text-align:center;padding:30px;background:#e0d7c9;margin-top:40px}
 .app-ui{background:#2b2b2b;color:#fff;border-radius:16px;padding:20px;font-family:monospace}
 .app-row{display:flex;justify-content:space-between;margin-bottom:10px}
 .badge{background:#c89b6d;color:#000;padding:3px 8px;border-radius:6px;font-size:.8em}
+.phone-mockup{max-width:280px;margin:0 auto;background:#1f1f1f;border-radius:28px;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,.18);position:relative}
+.phone-notch{width:90px;height:18px;border-radius:0 0 12px 12px;background:#111;margin:0 auto 8px auto}
+.phone-screen{background:#fcfaf6;color:#2f2a24;border-radius:22px;padding:16px;min-height:360px}
+.screen-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:16px}
+.screen-subtitle{font-size:.78em;opacity:.7;margin-top:3px}
+.sync-pill{background:#efe3d1;color:#5a3e2b;padding:4px 8px;border-radius:999px;font-size:.72em;font-weight:600}
+.sync-live{background:#dcefdc;color:#2d6a2d}
+.screen-stat{background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.list-item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:12px;margin-bottom:10px}
+.item-sub{font-size:.78em;opacity:.7;margin-top:2px}
+.low{border-color:#e5c7a5;background:#fff8ef}
+.badge{background:#c89b6d;color:#1d1d1d;padding:4px 9px;border-radius:999px;font-size:.78em;font-weight:700}
+.badge-warn{background:#efcf9f}
+.forecast-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:.92em}
+.forecast-bar-wrap{margin-bottom:14px}
+.forecast-bar{height:10px;background:#eadfce;border-radius:999px;overflow:hidden}
+.forecast-bar span{display:block;height:100%;background:#c89b6d;border-radius:999px}
+.task-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eee2d2;border-radius:12px;padding:10px 12px;margin-bottom:10px;font-size:.92em}
+.task-row input{width:auto;max-width:none;margin:0}
+.task-row.checked span{text-decoration:line-through;opacity:.65}
+.prep-note{margin-top:10px;font-size:.8em;opacity:.75;line-height:1.4}
 </style>
 
 
@@ -76,31 +97,100 @@ function initAnimations(){
 <div class="features">
 
 <div class="card">
-<h3>📦 Can Make</h3>
-<div class="app-ui">
-<div class="app-row"><span>Sourdough</span><span class="badge">24</span></div>
-<div class="app-row"><span>Croissants</span><span class="badge">12</span></div>
+<h3>📱 Mobile Inventory View</h3>
+<div class="phone-mockup">
+  <div class="phone-notch"></div>
+  <div class="phone-screen">
+    <div class="screen-header">
+      <div>
+        <strong>Inventory</strong>
+        <div class="screen-subtitle">Saturday Market Prep</div>
+      </div>
+      <span class="sync-pill">Offline</span>
+    </div>
+    <div class="screen-stat">
+      <span>Can Make</span>
+      <strong>36 Items</strong>
+    </div>
+    <div class="list-item">
+      <div>
+        <strong>Sourdough</strong>
+        <div class="item-sub">Flour stock healthy</div>
+      </div>
+      <span class="badge">24</span>
+    </div>
+    <div class="list-item">
+      <div>
+        <strong>Croissants</strong>
+        <div class="item-sub">Butter running low</div>
+      </div>
+      <span class="badge">12</span>
+    </div>
+    <div class="list-item low">
+      <div>
+        <strong>Muffins</strong>
+        <div class="item-sub">Need eggs soon</div>
+      </div>
+      <span class="badge badge-warn">Low</span>
+    </div>
+  </div>
 </div>
-<p>Live production capacity based on inventory.</p>
+<p>See live “Can Make” counts based on your actual inventory, even when you’re offline at the market.</p>
 </div>
 
 <div class="card">
-<h3>📊 Forecast</h3>
-<div class="app-ui">
-<div>Saturday Market → 18 units</div>
-<div>Sunday Fair → 10 units</div>
+<h3>📱 Mobile Forecast View</h3>
+<div class="phone-mockup">
+  <div class="phone-notch"></div>
+  <div class="phone-screen">
+    <div class="screen-header">
+      <div>
+        <strong>Forecast</strong>
+        <div class="screen-subtitle">Based on your sales history</div>
+      </div>
+      <span class="sync-pill sync-live">Synced</span>
+    </div>
+    <div class="screen-stat">
+      <span>Next Event</span>
+      <strong>Saturday Farmers Market</strong>
+    </div>
+    <div class="forecast-bar-wrap">
+      <div class="forecast-row"><span>Sourdough</span><strong>18</strong></div>
+      <div class="forecast-bar"><span style="width:78%"></span></div>
+    </div>
+    <div class="forecast-bar-wrap">
+      <div class="forecast-row"><span>Croissants</span><strong>10</strong></div>
+      <div class="forecast-bar"><span style="width:52%"></span></div>
+    </div>
+    <div class="forecast-bar-wrap">
+      <div class="forecast-row"><span>Muffins</span><strong>8</strong></div>
+      <div class="forecast-bar"><span style="width:40%"></span></div>
+    </div>
+  </div>
 </div>
-<p>Data-driven prep recommendations.</p>
+<p>Get event-specific prep suggestions from your own selling patterns instead of guesswork.</p>
 </div>
 
 <div class="card">
-<h3>🛠 Prep List</h3>
-<div class="app-ui">
-<div>✔ Croissants x12</div>
-<div>✔ Muffins x8</div>
-<div>⏳ Sourdough x6</div>
+<h3>📱 Mobile Prep List</h3>
+<div class="phone-mockup">
+  <div class="phone-notch"></div>
+  <div class="phone-screen">
+    <div class="screen-header">
+      <div>
+        <strong>Prep List</strong>
+        <div class="screen-subtitle">Today’s production tasks</div>
+      </div>
+      <span class="sync-pill">Offline</span>
+    </div>
+    <label class="task-row checked"><input type="checkbox" checked disabled><span>Croissants ×12</span></label>
+    <label class="task-row checked"><input type="checkbox" checked disabled><span>Muffins ×8</span></label>
+    <label class="task-row"><input type="checkbox" disabled><span>Sourdough ×6</span></label>
+    <label class="task-row"><input type="checkbox" disabled><span>Order: Lemon Tart ×2</span></label>
+    <div class="prep-note">Checking a batch deducts ingredients automatically.</div>
+  </div>
 </div>
-<p>Auto-generated production tasks.</p>
+<p>Prep work, customer orders, and inventory stay connected so you always know what still needs to be made.</p>
 </div>
 
 </div>
