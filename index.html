@@ -1,47 +1,52 @@
-<!-- ===================== SHARED STYLES ===================== -->
+<!-- ===================== GLOBAL STYLES (use in ALL pages or move to styles.css) ===================== -->
 <style>
-:root { --primary:#5a3e2b; --accent:#c89b6d; --bg:#f4efe6; --card:#fff; --text:#2f2a24; }
-body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text);} 
-header{background:var(--primary);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:700}
+:root{--primary:#5a3e2b;--accent:#c89b6d;--bg:#f4efe6;--card:#ffffff;--text:#2f2a24;--muted:#7a6f63}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+header{background:var(--primary);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+.logo-mark{width:28px;height:28px}
 nav a{color:#fff;margin-left:18px;text-decoration:none;opacity:.85}
 nav a.active{opacity:1;border-bottom:2px solid var(--accent)}
-.hero{padding:90px 20px;text-align:center;max-width:900px;margin:auto}
-.hero h1{font-size:2.6em;margin-bottom:10px}
-input{padding:12px;border-radius:6px;border:1px solid #ccc}
-button{padding:12px 18px;border:none;border-radius:6px;background:var(--primary);color:#fff;cursor:pointer}
-section{padding:70px 20px;max-width:1000px;margin:auto}
+.hero{padding:84px 20px 64px;text-align:center;max-width:920px;margin:auto}
+.hero h1{font-size:2.4em;margin:0 0 10px}
+.hero p{margin:0 auto;max-width:640px;color:#efe9e2}
+.cta{margin-top:20px}
+input{padding:12px;border-radius:8px;border:1px solid #d8cfc3;width:100%;max-width:320px}
+button{padding:12px 18px;border:none;border-radius:8px;background:var(--primary);color:#fff;cursor:pointer}
+button:disabled{opacity:.6;cursor:not-allowed}
+section{padding:64px 20px;max-width:1040px;margin:auto}
+h2{margin:0 0 18px;text-align:center}
+.lead{max-width:720px;margin:0 auto 24px;color:var(--muted);text-align:center}
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.card{background:var(--card);padding:25px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.08);transition:.25s}
-.card:hover{transform:translateY(-5px)}
-.highlight{background:#fff7ec;border-left:5px solid var(--primary);padding:20px;border-radius:8px}
-footer{text-align:center;padding:30px;background:#e0d7c9;margin-top:40px}
-.app-ui{background:#2b2b2b;color:#fff;border-radius:16px;padding:20px;font-family:monospace}
-.app-row{display:flex;justify-content:space-between;margin-bottom:10px}
-.badge{background:#c89b6d;color:#000;padding:3px 8px;border-radius:6px;font-size:.8em}
-.phone-mockup{max-width:280px;margin:0 auto;background:#1f1f1f;border-radius:28px;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,.18);position:relative}
-.phone-notch{width:90px;height:18px;border-radius:0 0 12px 12px;background:#111;margin:0 auto 8px auto}
-.phone-screen{background:#fcfaf6;color:#2f2a24;border-radius:22px;padding:16px;min-height:360px}
-.screen-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:16px}
-.screen-subtitle{font-size:.78em;opacity:.7;margin-top:3px}
+.card{background:var(--card);padding:22px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:.25s;opacity:0;transform:translateY(16px)}
+.card.visible{opacity:1;transform:translateY(0)}
+.card h3{margin:0 0 6px}
+.card p{margin:0;color:var(--muted)}
+.highlight{background:#fff7ec;border-left:4px solid var(--primary);padding:18px;border-radius:10px}
+.kicker{font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:8px}
+footer{text-align:center;padding:28px;background:#e0d7c9;margin-top:40px;color:#4b433b}
+
+/* Phone mockups */
+.phone-mockup{max-width:280px;margin:0 auto;background:#1f1f1f;border-radius:28px;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.phone-notch{width:90px;height:16px;border-radius:0 0 12px 12px;background:#111;margin:0 auto 8px}
+.phone-screen{background:#fcfaf6;color:#2f2a24;border-radius:22px;padding:14px;min-height:360px}
+.screen-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.screen-subtitle{font-size:.78em;opacity:.7;margin-top:2px}
 .sync-pill{background:#efe3d1;color:#5a3e2b;padding:4px 8px;border-radius:999px;font-size:.72em;font-weight:600}
 .sync-live{background:#dcefdc;color:#2d6a2d}
-.screen-stat{background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between;gap:12px;align-items:center}
-.list-item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:12px;margin-bottom:10px}
+.screen-stat{background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:10px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.list-item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:10px;margin-bottom:8px}
 .item-sub{font-size:.78em;opacity:.7;margin-top:2px}
 .low{border-color:#e5c7a5;background:#fff8ef}
-.badge{background:#c89b6d;color:#1d1d1d;padding:4px 9px;border-radius:999px;font-size:.78em;font-weight:700}
+.badge{background:#c89b6d;color:#1d1d1d;padding:3px 9px;border-radius:999px;font-size:.78em;font-weight:700}
 .badge-warn{background:#efcf9f}
-.forecast-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:.92em}
-.forecast-bar-wrap{margin-bottom:14px}
+.forecast-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.92em}
 .forecast-bar{height:10px;background:#eadfce;border-radius:999px;overflow:hidden}
-.forecast-bar span{display:block;height:100%;background:#c89b6d;border-radius:999px}
-.task-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eee2d2;border-radius:12px;padding:10px 12px;margin-bottom:10px;font-size:.92em}
-.task-row input{width:auto;max-width:none;margin:0}
-.task-row.checked span{text-decoration:line-through;opacity:.65}
-.prep-note{margin-top:10px;font-size:.8em;opacity:.75;line-height:1.4}
+.forecast-bar span{display:block;height:100%;background:#c89b6d}
+.task-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eee2d2;border-radius:12px;padding:9px 12px;margin-bottom:8px}
+.task-row.checked span{text-decoration:line-through;opacity:.6}
+.prep-note{margin-top:8px;font-size:.8em;opacity:.75}
 </style>
-
 
 
 <script>
@@ -60,6 +65,8 @@ function initAnimations(){
 }
 </script>
 
+<!-- ===================== index.html ===================== -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -69,242 +76,119 @@ function initAnimations(){
 </head>
 <body onload="setActive();initAnimations()">
 <header>
-<div class="logo">🐦 StallVantage</div>
-<nav>
-<a href="index.html">Home</a>
-<a href="features.html">Features</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</nav>
+  <div class="logo">
+    <!-- Simple, non-emoji mark -->
+    <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="18" width="40" height="20" rx="4" fill="#c89b6d"/>
+      <path d="M8 18 L24 8 L40 18" stroke="#c89b6d" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <span>StallVantage</span>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
 <div class="hero">
-  <h1>Stop Guessing What to Bring to Market</h1>
-  <p>
-    StallVantage replaces spreadsheets, notebooks, and guesswork with one simple system
-    that tracks inventory, plans production, and predicts what will sell.
-  </p>
-
+  <div class="kicker">For market vendors</div>
+  <h1>Know what to make before you get to the stall</h1>
+  <p>Track inventory, plan production, and predict demand—so you bring the right amount, every time.</p>
   <div class="cta">
-    <input id="email" placeholder="Enter email">
-    <button id="btn" onclick="joinWaitlist('btn','email','msg')">Join Waitlist</button>
-    <p id="msg"></p>
+    <input id="email" placeholder="Email address">
+    <button id="btn" onclick="joinWaitlist('btn','email','msg')">Join waitlist</button>
+    <p id="msg" class="lead"></p>
+  </div>
 </div>
-
 
 <section>
-<h2>See StallVantage in Action</h2>
-<div class="features">
-
-<div class="card">
-<h3>📱 Mobile Inventory View</h3>
-<div class="phone-mockup">
-  <div class="phone-notch"></div>
-  <div class="phone-screen">
-    <div class="screen-header">
-      <div>
-        <strong>Inventory</strong>
-        <div class="screen-subtitle">Saturday Market Prep</div>
-      </div>
-      <span class="sync-pill">Offline</span>
-    </div>
-    <div class="screen-stat">
-      <span>Can Make</span>
-      <strong>36 Items</strong>
-    </div>
-    <div class="list-item">
-      <div>
-        <strong>Sourdough</strong>
-        <div class="item-sub">Flour stock healthy</div>
-      </div>
-      <span class="badge">24</span>
-    </div>
-    <div class="list-item">
-      <div>
-        <strong>Croissants</strong>
-        <div class="item-sub">Butter running low</div>
-      </div>
-      <span class="badge">12</span>
-    </div>
-    <div class="list-item low">
-      <div>
-        <strong>Muffins</strong>
-        <div class="item-sub">Need eggs soon</div>
-      </div>
-      <span class="badge badge-warn">Low</span>
-    </div>
-  </div>
-</div>
-<p>See live “Can Make” counts based on your actual inventory, even when you’re offline at the market.</p>
-</div>
-
-<div class="card">
-<h3>📱 Mobile Forecast View</h3>
-<div class="phone-mockup">
-  <div class="phone-notch"></div>
-  <div class="phone-screen">
-    <div class="screen-header">
-      <div>
-        <strong>Forecast</strong>
-        <div class="screen-subtitle">Based on your sales history</div>
-      </div>
-      <span class="sync-pill sync-live">Synced</span>
-    </div>
-    <div class="screen-stat">
-      <span>Next Event</span>
-      <strong>Saturday Farmers Market</strong>
-    </div>
-    <div class="forecast-bar-wrap">
-      <div class="forecast-row"><span>Sourdough</span><strong>18</strong></div>
-      <div class="forecast-bar"><span style="width:78%"></span></div>
-    </div>
-    <div class="forecast-bar-wrap">
-      <div class="forecast-row"><span>Croissants</span><strong>10</strong></div>
-      <div class="forecast-bar"><span style="width:52%"></span></div>
-    </div>
-    <div class="forecast-bar-wrap">
-      <div class="forecast-row"><span>Muffins</span><strong>8</strong></div>
-      <div class="forecast-bar"><span style="width:40%"></span></div>
-    </div>
-  </div>
-</div>
-<p>Get event-specific prep suggestions from your own selling patterns instead of guesswork.</p>
-</div>
-
-<div class="card">
-<h3>📱 Mobile Prep List</h3>
-<div class="phone-mockup">
-  <div class="phone-notch"></div>
-  <div class="phone-screen">
-    <div class="screen-header">
-      <div>
-        <strong>Prep List</strong>
-        <div class="screen-subtitle">Today’s production tasks</div>
-      </div>
-      <span class="sync-pill">Offline</span>
-    </div>
-    <label class="task-row checked"><input type="checkbox" checked disabled><span>Croissants ×12</span></label>
-    <label class="task-row checked"><input type="checkbox" checked disabled><span>Muffins ×8</span></label>
-    <label class="task-row"><input type="checkbox" disabled><span>Sourdough ×6</span></label>
-    <label class="task-row"><input type="checkbox" disabled><span>Order: Lemon Tart ×2</span></label>
-    <div class="prep-note">Checking a batch deducts ingredients automatically.</div>
-  </div>
-</div>
-<p>Prep work, customer orders, and inventory stay connected so you always know what still needs to be made.</p>
-</div>
-
-</div>
-</section>
-
-<section>
-  <h2>Built for How You Actually Work</h2>
-  <div class="highlight">
-    <p>
-      Whether you're baking sourdough, crafting jewelry, or building custom pieces,
-      StallVantage adapts to your workflow — not the other way around.
-    </p>
+  <h2>What it replaces</h2>
+  <p class="lead">Spreadsheets, notebooks, and end‑of‑day guesswork. One system that keeps inventory, prep, and sales in sync.</p>
+  <div class="features">
+    <div class="card"><h3>Inventory, without math</h3><p>See exactly how many items you can produce from current stock. Updates in real time.</p></div>
+    <div class="card"><h3>Plan your prep</h3><p>Build a list for the next market from orders and target stock—automatically.</p></div>
+    <div class="card"><h3>Work anywhere</h3><p>Full offline access. Everything syncs when you’re back online.</p></div>
   </div>
 </section>
 
 <section>
-  <h2>What Makes StallVantage Different</h2>
+  <div class="kicker">Product preview</div>
+  <h2>How it looks in practice</h2>
+  <p class="lead">A quick look at the core screens you’ll use before and during a market.</p>
   <div class="features">
 
     <div class="card">
-      <h3>📦 Inventory That Thinks Ahead</h3>
-      <p>
-        See exactly how much you can make based on your current stock. No more manual math.
-      </p>
+      <h3>Inventory — live production view</h3>
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="screen-header">
+            <div>
+              <strong>Inventory</strong>
+              <div class="screen-subtitle">Saturday market</div>
+            </div>
+            <span class="sync-pill">Offline</span>
+          </div>
+          <div class="screen-stat"><span>Can make</span><strong>36 items</strong></div>
+          <div class="list-item"><div><strong>Sourdough</strong><div class="item-sub">Flour healthy</div></div><span class="badge">24</span></div>
+          <div class="list-item"><div><strong>Croissants</strong><div class="item-sub">Butter low soon</div></div><span class="badge">12</span></div>
+          <div class="list-item low"><div><strong>Muffins</strong><div class="item-sub">Need eggs</div></div><span class="badge badge-warn">Low</span></div>
+        </div>
+      </div>
+      <p>Know your capacity at a glance, even with no signal.</p>
     </div>
 
     <div class="card">
-      <h3>📊 Smart Forecasting</h3>
-      <p>
-        Know what to bring to each market based on your real sales history — not guesswork.
-      </p>
+      <h3>Forecast — per event</h3>
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="screen-header">
+            <div>
+              <strong>Forecast</strong>
+              <div class="screen-subtitle">Based on your history</div>
+            </div>
+            <span class="sync-pill sync-live">Synced</span>
+          </div>
+          <div class="screen-stat"><span>Next event</span><strong>Farmers Market</strong></div>
+          <div class="forecast-row"><span>Sourdough</span><strong>18</strong></div>
+          <div class="forecast-bar"><span style="width:78%"></span></div>
+          <div class="forecast-row"><span>Croissants</span><strong>10</strong></div>
+          <div class="forecast-bar"><span style="width:52%"></span></div>
+          <div class="forecast-row"><span>Muffins</span><strong>8</strong></div>
+          <div class="forecast-bar"><span style="width:40%"></span></div>
+        </div>
+      </div>
+      <p>Bring the right mix for each market, not an average guess.</p>
     </div>
 
     <div class="card">
-      <h3>🛠 Production Planning</h3>
-      <p>
-        Automatically generate prep lists from orders and stock needs. Everything in one place.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>📶 Works Fully Offline</h3>
-      <p>
-        Track inventory, orders, and sales without internet. Syncs automatically later.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>🧾 Market-Level Insights</h3>
-      <p>
-        See which markets perform best and where your profit actually comes from.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>🧠 Built for Makers</h3>
-      <p>
-        Uses your language — recipes, materials, builds — instead of generic retail terms.
-      </p>
+      <h3>Prep — connected to inventory</h3>
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="screen-header">
+            <div>
+              <strong>Prep list</strong>
+              <div class="screen-subtitle">Today</div>
+            </div>
+            <span class="sync-pill">Offline</span>
+          </div>
+          <label class="task-row checked"><input type="checkbox" checked disabled><span>Croissants ×12</span></label>
+          <label class="task-row checked"><input type="checkbox" checked disabled><span>Muffins ×8</span></label>
+          <label class="task-row"><input type="checkbox" disabled><span>Sourdough ×6</span></label>
+          <div class="prep-note">Checking a batch deducts ingredients automatically.</div>
+        </div>
+      </div>
+      <p>One action updates prep, inventory, and totals together.</p>
     </div>
 
   </div>
 </section>
 
-<section>
-  <h2>Why Vendors Switch</h2>
-  <div class="features">
-    <div class="card">
-      <p><strong>Before:</strong> Spreadsheets, notebooks, guessing inventory</p>
-      <p><strong>After:</strong> One system that tracks, predicts, and plans everything</p>
-    </div>
-    <div class="card">
-      <p><strong>Before:</strong> Running out of bestsellers early</p>
-      <p><strong>After:</strong> Bring the right amount, every time</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Testimonials (Placeholder)</h2>
-  <p><strong>"I stopped running out of my best sellers."</strong> – Bakery Vendor</p>
-  <p><strong>"Finally something built for how I actually work."</strong> – Jewelry Maker</p>
-</section>
-
-<section>
-  <h2>FAQ</h2>
-
-  <p><strong>When is StallVantage launching?</strong><br>
-  We're currently entering beta. Join the waitlist to be first in.
-  </p>
-
-  <p><strong>Will it work without internet?</strong><br>
-  Yes — StallVantage works fully offline and syncs automatically.
-  </p>
-
-  <p><strong>What platforms will it support?</strong><br>
-  iOS, Android, Windows, with web support coming later.
-  </p>
-
-</section>
-
-<section>
-  <h2>Join the Waitlist</h2>
-  <div class="cta" style="text-align:center;">
-    <input type="email" placeholder="Enter your email">
-    <button id="btn" onclick="joinWaitlist('btn','email','msg')">Get Early Access</button>
-    <p id="msg"></p>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Crowe's Nest Productions</p>
-</footer>
-
+<footer>© 2026 Crowe's Nest Productions</footer>
 </body>
 </html>
 

@@ -1,21 +1,51 @@
 <!-- ===================== SHARED STYLES ===================== -->
 <style>
-:root { --primary:#5a3e2b; --accent:#c89b6d; --bg:#f4efe6; --card:#fff; --text:#2f2a24; }
-body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text);} 
-header{background:var(--primary);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:700}
+:root{--primary:#5a3e2b;--accent:#c89b6d;--bg:#f4efe6;--card:#ffffff;--text:#2f2a24;--muted:#7a6f63}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+header{background:var(--primary);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+.logo-mark{width:28px;height:28px}
 nav a{color:#fff;margin-left:18px;text-decoration:none;opacity:.85}
 nav a.active{opacity:1;border-bottom:2px solid var(--accent)}
-.hero{padding:90px 20px;text-align:center;max-width:900px;margin:auto}
-.hero h1{font-size:2.6em;margin-bottom:10px}
-input{padding:12px;border-radius:6px;border:1px solid #ccc}
-button{padding:12px 18px;border:none;border-radius:6px;background:var(--primary);color:#fff;cursor:pointer}
-section{padding:70px 20px;max-width:1000px;margin:auto}
+.hero{padding:84px 20px 64px;text-align:center;max-width:920px;margin:auto}
+.hero h1{font-size:2.4em;margin:0 0 10px}
+.hero p{margin:0 auto;max-width:640px;color:#efe9e2}
+.cta{margin-top:20px}
+input{padding:12px;border-radius:8px;border:1px solid #d8cfc3;width:100%;max-width:320px}
+button{padding:12px 18px;border:none;border-radius:8px;background:var(--primary);color:#fff;cursor:pointer}
+button:disabled{opacity:.6;cursor:not-allowed}
+section{padding:64px 20px;max-width:1040px;margin:auto}
+h2{margin:0 0 18px;text-align:center}
+.lead{max-width:720px;margin:0 auto 24px;color:var(--muted);text-align:center}
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.card{background:var(--card);padding:25px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.08);transition:.25s}
-.card:hover{transform:translateY(-5px)}
-.highlight{background:#fff7ec;border-left:5px solid var(--primary);padding:20px;border-radius:8px}
-footer{text-align:center;padding:30px;background:#e0d7c9;margin-top:40px}
+.card{background:var(--card);padding:22px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:.25s;opacity:0;transform:translateY(16px)}
+.card.visible{opacity:1;transform:translateY(0)}
+.card h3{margin:0 0 6px}
+.card p{margin:0;color:var(--muted)}
+.highlight{background:#fff7ec;border-left:4px solid var(--primary);padding:18px;border-radius:10px}
+.kicker{font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:8px}
+footer{text-align:center;padding:28px;background:#e0d7c9;margin-top:40px;color:#4b433b}
+
+/* Phone mockups */
+.phone-mockup{max-width:280px;margin:0 auto;background:#1f1f1f;border-radius:28px;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.phone-notch{width:90px;height:16px;border-radius:0 0 12px 12px;background:#111;margin:0 auto 8px}
+.phone-screen{background:#fcfaf6;color:#2f2a24;border-radius:22px;padding:14px;min-height:360px}
+.screen-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.screen-subtitle{font-size:.78em;opacity:.7;margin-top:2px}
+.sync-pill{background:#efe3d1;color:#5a3e2b;padding:4px 8px;border-radius:999px;font-size:.72em;font-weight:600}
+.sync-live{background:#dcefdc;color:#2d6a2d}
+.screen-stat{background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:10px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.list-item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #eee2d2;border-radius:14px;padding:10px;margin-bottom:8px}
+.item-sub{font-size:.78em;opacity:.7;margin-top:2px}
+.low{border-color:#e5c7a5;background:#fff8ef}
+.badge{background:#c89b6d;color:#1d1d1d;padding:3px 9px;border-radius:999px;font-size:.78em;font-weight:700}
+.badge-warn{background:#efcf9f}
+.forecast-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.92em}
+.forecast-bar{height:10px;background:#eadfce;border-radius:999px;overflow:hidden}
+.forecast-bar span{display:block;height:100%;background:#c89b6d}
+.task-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eee2d2;border-radius:12px;padding:9px 12px;margin-bottom:8px}
+.task-row.checked span{text-decoration:line-through;opacity:.6}
+.prep-note{margin-top:8px;font-size:.8em;opacity:.75}
 </style>
 
 <script>
@@ -29,72 +59,42 @@ function setActive(){
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Features - StallVantage</title>
+<title>Features — StallVantage</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-<body onload="setActive()">
+<body onload="setActive();initAnimations()">
 <header>
-<div class="logo">🐦 StallVantage</div>
-<nav>
-<a href="index.html">Home</a>
-<a href="features.html">Features</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</nav>
+  <div class="logo">
+    <svg class="logo-mark" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="40" height="20" rx="4" fill="#c89b6d"/><path d="M8 18 L24 8 L40 18" stroke="#c89b6d" stroke-width="4" stroke-linecap="round"/></svg>
+    <span>StallVantage</span>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
 <section>
-<h2>Built for Real Market Workflows</h2>
-<div class="highlight">
-<p>StallVantage connects inventory, production, orders, and analytics into one system — so you always know what to make, what you need, and what actually sells.</p>
-</div>
+  <div class="kicker">System overview</div>
+  <h2>Everything connected</h2>
+  <p class="lead">Inventory, orders, prep, and analytics feed each other—so you always have a current answer to “what should I make?”</p>
+  <div class="features">
+    <div class="card"><h3>Inventory → capacity</h3><p>Every change updates how many items you can produce right now.</p></div>
+    <div class="card"><h3>Orders → prep</h3><p>Customer orders become batches on your prep list automatically.</p></div>
+    <div class="card"><h3>Prep → inventory</h3><p>Mark a batch done and ingredients are deducted—no double entry.</p></div>
+  </div>
 </section>
 
 <section>
-<h2>Deep Feature Breakdown</h2>
-<div class="features">
-
-<div class="card">
-<h3>📦 Inventory Intelligence</h3>
-<p>Live inventory tracking with automatic deductions. Instantly see how many items you can produce based on current stock.</p>
-</div>
-
-<div class="card">
-<h3>🛠 Production Planning</h3>
-<p>Prep lists generated from orders and stock needs. No separate planning tools required.</p>
-</div>
-
-<div class="card">
-<h3>📊 Market-Based Analytics</h3>
-<p>Track revenue and performance per market event — not just by date.</p>
-</div>
-
-<div class="card">
-<h3>📈 Forecasting</h3>
-<p>Use your own sales history to predict what to bring to each event.</p>
-</div>
-
-<div class="card">
-<h3>📶 Offline First</h3>
-<p>Full functionality without internet. Everything syncs automatically later.</p>
-</div>
-
-<div class="card">
-<h3>🧠 Built for Makers</h3>
-<p>Uses your language — recipes, materials, builds — not generic retail terms.</p>
-</div>
-
-</div>
-</section>
-
-<section>
-<h2>Why This Matters</h2>
-<div class="features">
-<div class="card"><p><strong>Without StallVantage:</strong> Guess inventory, track manually, lose sales</p></div>
-<div class="card"><p><strong>With StallVantage:</strong> Plan accurately, reduce waste, maximize profit</p></div>
-</div>
+  <div class="kicker">Key capabilities</div>
+  <h2>Built for market workflows</h2>
+  <div class="features">
+    <div class="card"><h3>Event-based forecasting</h3><p>Recommendations per market, based on your history—not a global average.</p></div>
+    <div class="card"><h3>Offline first</h3><p>Full access at the stall. Sync happens when it can.</p></div>
+    <div class="card"><h3>Maker vocabulary</h3><p>Recipes, materials, builds—labels that match how you work.</p></div>
+  </div>
 </section>
 
 <footer>© 2026 Crowe's Nest Productions</footer>
