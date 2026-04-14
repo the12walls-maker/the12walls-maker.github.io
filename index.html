@@ -12,11 +12,11 @@
 <body>
   <header class="site-header">
     <a class="logo" href="index.html" aria-label="StallVantage home">
-      <img class="logo-image" src="logo.png" alt="StallVantage logo">
-      <span class="logo-wordmark">
-        <strong>StallVantage</strong>
-        <span>Stall Organization &amp; Business Insights</span>
-      </span>
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="18" width="40" height="20" rx="4" fill="#c89b6d"/>
+        <path d="M8 18 L24 8 L40 18" stroke="#c89b6d" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span>StallVantage</span>
     </a>
     <nav class="site-nav">
       <a href="index.html">Home</a>
@@ -28,29 +28,112 @@
 
   <main>
     <section class="hero">
-      <div class="hero-copy">
-        <div class="kicker">For market vendors</div>
-        <h1>Know what to make before you get to the stall</h1>
-        <p>Track inventory, plan production, and predict demand so you bring the right amount, reduce waste, and walk into market day with a clearer plan.</p>
-        <div class="cta">
-          <div class="cta-row">
-            <input id="waitlist-email" type="email" placeholder="Email address" aria-label="Email address">
-            <button id="waitlist-button" type="button" onclick="joinWaitlist('waitlist-button','waitlist-email','waitlist-message')">Join waitlist</button>
-          </div>
-          <p id="waitlist-message" class="form-message"></p>
+      <div class="kicker">For market vendors</div>
+      <h1>Know what to make before you get to the stall</h1>
+      <p>Track inventory, plan production, and predict demand so you bring the right amount, every time.</p>
+      <div class="cta">
+        <div class="cta-row">
+          <input id="waitlist-email" type="email" placeholder="Email address" aria-label="Email address">
+          <button id="waitlist-button" type="button" onclick="joinWaitlist('waitlist-button','waitlist-email','waitlist-message')">Join waitlist</button>
         </div>
+        <p id="waitlist-message" class="form-message"></p>
       </div>
+    </section>
 
-      <div class="hero-card">
-        <div class="hero-brand">
-          <img src="logo.png" alt="StallVantage logo graphic">
-        </div>
-        <div class="hero-highlights">
-          <div class="hero-stat">
-            <strong>Offline-ready</strong>
-            <span>Keep working at outdoor markets with weak service.</span>
+    <section>
+      <h2>What it replaces</h2>
+      <p class="lead">Spreadsheets, notebooks, and end-of-day guesswork. One system that keeps inventory, prep, and sales in sync.</p>
+      <div class="features">
+        <article class="card">
+          <h3>Inventory, without math</h3>
+          <p>See exactly how many items you can produce from current stock. Updates in real time.</p>
+        </article>
+        <article class="card">
+          <h3>Plan your prep</h3>
+          <p>Build a list for the next market from orders and target stock automatically.</p>
+        </article>
+        <article class="card">
+          <h3>Work anywhere</h3>
+          <p>Full offline access. Everything syncs when you are back online.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">Product preview</div>
+      <h2>How it looks in practice</h2>
+      <p class="lead">A quick look at the core screens you will use before and during a market.</p>
+      <div class="features">
+        <article class="card">
+          <h3>Inventory — live production view</h3>
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="screen-header">
+                <div>
+                  <strong>Inventory</strong>
+                  <div class="screen-subtitle">Saturday market</div>
+                </div>
+                <span class="sync-pill">Offline</span>
+              </div>
+              <div class="screen-stat"><span>Can make</span><strong>36 items</strong></div>
+              <div class="list-item"><div><strong>Sourdough</strong><div class="item-sub">Flour healthy</div></div><span class="badge">24</span></div>
+              <div class="list-item"><div><strong>Croissants</strong><div class="item-sub">Butter low soon</div></div><span class="badge">12</span></div>
+              <div class="list-item low"><div><strong>Muffins</strong><div class="item-sub">Need eggs</div></div><span class="badge badge-warn">Low</span></div>
+            </div>
           </div>
-          <div class="hero-stat">
-            <strong>Forecast by market</strong>
-            <span>Use your own sales history for the next event.</span>
+          <p>Know your capacity at a glance, even with no signal.</p>
+        </article>
+
+        <article class="card">
+          <h3>Forecast — per event</h3>
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="screen-header">
+                <div>
+                  <strong>Forecast</strong>
+                  <div class="screen-subtitle">Based on your history</div>
+                </div>
+                <span class="sync-pill sync-live">Synced</span>
+              </div>
+              <div class="screen-stat"><span>Next event</span><strong>Farmers Market</strong></div>
+              <div class="forecast-row"><span>Sourdough</span><strong>18</strong></div>
+              <div class="forecast-bar"><span style="width:78%"></span></div>
+              <div class="forecast-row"><span>Croissants</span><strong>10</strong></div>
+              <div class="forecast-bar"><span style="width:52%"></span></div>
+              <div class="forecast-row"><span>Muffins</span><strong>8</strong></div>
+              <div class="forecast-bar"><span style="width:40%"></span></div>
+            </div>
+          </div>
+          <p>Bring the right mix for each market, not an average guess.</p>
+        </article>
+
+        <article class="card">
+          <h3>Prep — connected to inventory</h3>
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="screen-header">
+                <div>
+                  <strong>Prep list</strong>
+                  <div class="screen-subtitle">Today</div>
+                </div>
+                <span class="sync-pill">Offline</span>
+              </div>
+              <label class="task-row checked"><input type="checkbox" checked disabled><span>Croissants ×12</span></label>
+              <label class="task-row checked"><input type="checkbox" checked disabled><span>Muffins ×8</span></label>
+              <label class="task-row"><input type="checkbox" disabled><span>Sourdough ×6</span></label>
+              <div class="prep-note">Checking a batch deducts ingredients automatically.</div>
+            </div>
+          </div>
+          <p>One action updates prep, inventory, and totals together.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">© 2026 Crowe's Nest Productions</footer>
+  <script src="scripts.js"></script>
+</body>
 </html>
