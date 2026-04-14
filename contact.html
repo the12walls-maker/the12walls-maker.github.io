@@ -1,31 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Contact — StallVantage</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — StallVantage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="setActive();initAnimations()">
-<header>
-  <div class="logo">
-    <svg class="logo-mark" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="40" height="20" rx="4" fill="#c89b6d"/><path d="M8 18 L24 8 L40 18" stroke="#c89b6d" stroke-width="4" stroke-linecap="round"/></svg>
-    <span>StallVantage</span>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="features.html">Features</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="StallVantage home">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="18" width="40" height="20" rx="4" fill="#c89b6d"/>
+        <path d="M8 18 L24 8 L40 18" stroke="#c89b6d" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span>StallVantage</span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<section>
-  <h2>Contact</h2>
-  <p class="lead">Questions, feedback, or interested in the beta?</p>
-  <div class="features">
-    <div class="card"><h3>Email</h3><p>the12walls@gmail.com<a href="mailto:the12walls@gmail.com"></a></p></div>
-  </div>
-</section>
+  <main>
+    <section class="page-hero">
+      <div class="kicker">Contact</div>
+      <h1>Questions about the beta?</h1>
+      <p>Whether you want to follow the launch, ask about the roadmap, or share feedback from your own market workflow, get in touch.</p>
+    </section>
 
-<footer>© 2026 Crowe's Nest Productions</footer>
+    <section>
+      <div class="card contact-card visible">
+        <h3>Email</h3>
+        <p><a href="mailto:the12walls@gmail.com">the12walls@gmail.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">© 2026 Crowe's Nest Productions</footer>
+  <script src="scripts.js"></script>
 </body>
 </html>
