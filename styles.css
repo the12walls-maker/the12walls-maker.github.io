@@ -100,7 +100,7 @@ img,svg{display:block}
 .page-hero p{
   margin:0 auto;
   max-width:760px;
-  color:#eed5b8;
+  color:var(--muted);
   line-height:1.7;
 }
 
