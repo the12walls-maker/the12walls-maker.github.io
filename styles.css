@@ -80,7 +80,7 @@ img,svg{display:block}
 .hero p{
   margin:0 auto;
   max-width:680px;
-  color:#eed5b8;
+  color:var(--muted);
   font-size:1.05rem;
   line-height:1.65;
 }
