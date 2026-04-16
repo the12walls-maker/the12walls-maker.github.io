@@ -6,7 +6,7 @@
   <title>StallVantage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
       <span>StallVantage</span>
     </a>
     <nav class="site-nav">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active" aria-current="page">Home</a>
       <a href="features.html">Features</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -28,9 +28,9 @@
 
   <main>
     <section class="hero">
-      <div class="kicker">For market vendors</div>
+      <div class="kicker">For bakers, jewelers, and workshop makers</div>
       <h1>Know what to make before you get to the stall</h1>
-      <p>Track inventory, plan production, and predict demand so you bring the right amount, every time.</p>
+      <p>Use your own inventory, orders, and venue history to decide whether to bake 24 sourdoughs, make 12 rings, or finish 6 boards. No spreadsheet math, no market-day guesswork.</p>
       <div class="cta">
         <div class="cta-row">
           <input id="waitlist-email" type="email" placeholder="Email address" aria-label="Email address">
@@ -38,23 +38,25 @@
         </div>
         <p id="waitlist-message" class="form-message"></p>
       </div>
+      <p class="note-text">Built for the people who load the car, set up the booth, and still want to know what to bring to the next event.</p>
+      <p class="note-text">Works with Square or Stripe for payments, so card and cash sales stay connected to inventory, prep, and forecasting.</p>
     </section>
 
-    <section>
-      <h2>What it replaces</h2>
-      <p class="lead">Spreadsheets, notebooks, and end-of-day guesswork. One system that keeps inventory, prep, and sales in sync.</p>
+    <section class="section-tight">
+      <h2>What you leave behind</h2>
+      <p class="lead">Spreadsheets, notebooks, and end-of-day guesswork are how many market makers run their business today. StallVantage puts inventory, prep, orders, and venue performance in one place that actually speaks your language.</p>
       <div class="features">
         <article class="card">
-          <h3>Inventory, without math</h3>
-          <p>See exactly how many items you can produce from current stock. Updates in real time.</p>
+          <h3>Inventory without math</h3>
+          <p>See exactly how many items you can make from current stock. Every ingredient and material feeds the count automatically.</p>
         </article>
         <article class="card">
-          <h3>Plan your prep</h3>
-          <p>Build a list for the next market from orders and target stock automatically.</p>
+          <h3>Prep lists that follow orders</h3>
+          <p>Custom orders move onto your production list, and stock checks happen before you even leave the kitchen.</p>
         </article>
         <article class="card">
-          <h3>Work anywhere</h3>
-          <p>Full offline access. Everything syncs when you are back online.</p>
+          <h3>Offline first for the market</h3>
+          <p>Work at outdoor events with unreliable reception. Everything syncs back later so your data is ready when you are.</p>
         </article>
       </div>
     </section>
@@ -62,7 +64,7 @@
     <section>
       <div class="kicker">Product preview</div>
       <h2>How it looks in practice</h2>
-      <p class="lead">A quick look at the core screens you will use before and during a market.</p>
+      <p class="lead">A quick look at the screens you use before and during a market: inventory, forecast, and prep working together so you can make more in the same timeframe.</p>
       <div class="features">
         <article class="card">
           <h3>Inventory — live production view</h3>
@@ -82,7 +84,7 @@
               <div class="list-item low"><div><strong>Muffins</strong><div class="item-sub">Need eggs</div></div><span class="badge badge-warn">Low</span></div>
             </div>
           </div>
-          <p>Know your capacity at a glance, even with no signal.</p>
+          <p>Know your capacity at a glance, even when the signal is gone.</p>
         </article>
 
         <article class="card">
