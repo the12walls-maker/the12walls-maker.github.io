@@ -3,14 +3,195 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StallVantage</title>
+  <title>Delete Account | StallVantage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .delete-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .delete-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .stack > * + * {
+      margin-top: 1rem;
+    }
+
+    .card h2, .card h3 {
+      margin-top: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .field label {
+      font-weight: 600;
+    }
+
+    .field input[type="email"],
+    .field input[type="password"],
+    .field input[type="text"] {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      font: inherit;
+      background: #fff;
+    }
+
+    .field input:focus {
+      outline: 2px solid rgba(200, 155, 109, 0.32);
+      border-color: #c89b6d;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      line-height: 1.45;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.85rem 1.2rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 120ms ease, opacity 120ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+      transform: none;
+    }
+
+    .btn-primary {
+      background: #1e1c1a;
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: rgba(30, 28, 26, 0.08);
+      color: #1e1c1a;
+    }
+
+    .btn-danger {
+      background: #8e2d22;
+      color: #fff;
+    }
+
+    .muted {
+      color: #5f5a55;
+    }
+
+    .small-text {
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .status-box {
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      background: rgba(200, 155, 109, 0.08);
+      border: 1px solid rgba(200, 155, 109, 0.24);
+      min-height: 3.5rem;
+    }
+
+    .status-box.error {
+      background: rgba(142, 45, 34, 0.08);
+      border-color: rgba(142, 45, 34, 0.22);
+    }
+
+    .status-box.success {
+      background: rgba(53, 111, 72, 0.08);
+      border-color: rgba(53, 111, 72, 0.22);
+    }
+
+    .confirm-panel {
+      display: none;
+    }
+
+    .confirm-panel.active {
+      display: block;
+    }
+
+    .summary-list {
+      margin: 0.75rem 0 0 1.2rem;
+      padding: 0;
+    }
+
+    .summary-list li + li {
+      margin-top: 0.35rem;
+    }
+
+    .steps {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.8rem;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      background: rgba(200, 155, 109, 0.18);
+      color: #6f512f;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+
+    code.inline-code {
+      font-size: 0.92em;
+      padding: 0.15rem 0.35rem;
+      border-radius: 0.45rem;
+      background: rgba(30, 28, 26, 0.07);
+    }
+
+    @media (max-width: 860px) {
+      .delete-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
+  <header class="site-header">
     <a class="logo" href="index.html" aria-label="StallVantage home">
       <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="18" width="40" height="20" rx="4" fill="#c89b6d"/>
@@ -20,42 +201,267 @@
     </a>
     <nav class="site-nav">
       <a href="index.html">Home</a>
-      <a href="features.html" class="active" aria-current="page">Features</a>
+      <a href="features.html">Features</a>
       <a href="about.html">About</a>
+      <a href="delete-account.html" class="active" aria-current="page">Delete Account</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main>
-<div class="container">
-    <h1>Delete Your StallVantage Account</h1>
-    <p>We are sorry to see you go. Please review the information below before proceeding with your request.</p>
+    <section class="page-hero section-tight">
+      <div class="delete-wrap">
+        <div class="kicker">Account deletion</div>
+        <h1>Request permanent deletion of your StallVantage account</h1>
+        <p>This page lets a StallVantage user verify their identity, review what happens next, and then submit a final deletion request.</p>
+        <p class="note-text">Deleting an account permanently removes access to StallVantage. Some records may be retained where law permits or requires retention, such as fraud prevention, security, tax, or compliance records.</p>
+      </div>
+    </section>
 
-    <div class="warning-box">
-        <strong>Important: This process is irreversible.</strong><br>
-        Once your account is deleted, all associated business data, records, and access will be permanently removed. This action cannot be undone.
-    </div>
+    <section class="section-loose">
+      <div class="delete-wrap delete-grid">
+        <div class="stack">
+          <article class="card">
+            <h2>Delete your account</h2>
+            <p class="muted small-text">To protect your data, we ask you to sign in first. After we verify your credentials, you will need to confirm the deletion one more time before anything is removed.</p>
 
-    <p>To protect your privacy and prevent the unauthorized removal of sensitive business data, we must authenticate your identity before processing this request.</p>
+            <form id="auth-form" class="form-grid" novalidate>
+              <div class="field">
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+              </div>
 
-    <div class="auth-options">
-        <a href="/login?redirect=delete" class="btn btn-primary">Log In to Authenticate Now</a>
-        
-        <p style="text-align: center; font-size: 14px; margin: 20px 0;">— OR —</p>
-        
-        <p>If you no longer have access to your account, please contact our support team to verify your identity manually.</p>
-        <a href="mailto:support@stallvantage.com?subject=Account Deletion Request" class="btn btn-secondary">Contact StallVantage Support</a>
-    </div>
+              <div class="field">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+              </div>
 
-    <p style="font-size: 13px; color: #5f6368; margin-top: 20px;">
-        <em>California Residents:</em> This form serves as a formal request under the CCPA. We will acknowledge your request within 10 days and complete the deletion within 45 days of verification.
-    </p>
-</div>
-</main>
-<div class="footer">
-    &copy; 2026 StallVantage. All rights reserved. <br>
-    <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a>
-</div>
+              <div class="check-row">
+                <input id="auth-consent" type="checkbox" required>
+                <label for="auth-consent" class="small-text">I understand this sign-in is used only to verify my identity before an account deletion request is processed.</label>
+              </div>
 
+              <div class="button-row">
+                <button id="auth-button" class="btn btn-primary" type="submit">Verify account</button>
+              </div>
+            </form>
+          </article>
+
+          <article id="confirm-panel" class="card confirm-panel">
+            <h2>Final confirmation</h2>
+            <p class="small-text">Your account has been verified for <strong id="verified-email">your account</strong>. Confirm below to request permanent deletion.</p>
+
+            <ul class="summary-list small-text">
+              <li>Your account access will end after deletion is completed.</li>
+              <li>Associated user data will be removed through our secure backend deletion workflow.</li>
+              <li>Some information may be retained where legally required or reasonably necessary for fraud prevention, security, or recordkeeping.</li>
+            </ul>
+
+            <div class="form-grid" style="margin-top: 1rem;">
+              <div class="check-row">
+                <input id="delete-consent" type="checkbox">
+                <label for="delete-consent" class="small-text">I understand this request is intended to permanently delete my StallVantage account and associated data, subject to any lawful retention exceptions.</label>
+              </div>
+
+              <div class="field">
+                <label for="confirm-text">Type DELETE to confirm</label>
+                <input id="confirm-text" type="text" autocomplete="off" placeholder="DELETE">
+              </div>
+
+              <div class="button-row">
+                <button id="delete-button" class="btn btn-danger" type="button">Permanently delete account</button>
+                <button id="cancel-button" class="btn btn-secondary" type="button">Cancel</button>
+              </div>
+            </div>
+          </article>
+
+          <article id="status-box" class="status-box" aria-live="polite">
+            Enter your email and password to verify your account before continuing.
+          </article>
+        </div>
+
+        <div class="stack">
+          <article class="card">
+            <h3>How this works</h3>
+            <div class="steps small-text">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div>Enter the email and password for the StallVantage account you want to delete.</div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div>If the credentials are valid, this page unlocks a separate final confirmation step.</div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div>After final confirmation, the page calls a protected backend deletion function that removes account data and deletes the account.</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Implementation notes</h3>
+            <p class="small-text">Before using this page, replace the configuration placeholders in the script with your own Supabase values:</p>
+            <ul class="summary-list small-text">
+              <li><code class="inline-code">SUPABASE_URL</code></li>
+              <li><code class="inline-code">SUPABASE_ANON_KEY</code></li>
+              <li><code class="inline-code">DELETE_FUNCTION_NAME</code> for your protected Edge Function</li>
+            </ul>
+            <p class="small-text">Do <strong>not</strong> put a Supabase service role key in this page. The actual account deletion must happen in a trusted backend function.</p>
+          </article>
+
+          <article class="card">
+            <h3>Need help instead?</h3>
+            <p class="small-text">If you cannot access your account or need assistance with a deletion request, contact <a href="mailto:contact@stallvantage.com">contact@stallvantage.com</a>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">© 2026 Crowe's Nest Productions</footer>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const SUPABASE_URL = 'https://oezqtfyqdvzoqdnumazc.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9lenF0ZnlxZHZ6b3FkbnVtYXpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDU2NzMsImV4cCI6MjA5MDcyMTY3M30.9w_UhQ4j4XsvZ5LSf30l0mdSL8aH9EIrSQfoiyy7PxI';
+    const DELETE_FUNCTION_NAME = 'delete-account';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const authForm = document.getElementById('auth-form');
+    const authButton = document.getElementById('auth-button');
+    const authConsent = document.getElementById('auth-consent');
+    const confirmPanel = document.getElementById('confirm-panel');
+    const deleteButton = document.getElementById('delete-button');
+    const cancelButton = document.getElementById('cancel-button');
+    const deleteConsent = document.getElementById('delete-consent');
+    const confirmText = document.getElementById('confirm-text');
+    const verifiedEmail = document.getElementById('verified-email');
+    const statusBox = document.getElementById('status-box');
+
+    let verifiedUser = null;
+
+    function setStatus(message, type = 'default') {
+      statusBox.textContent = message;
+      statusBox.className = 'status-box';
+      if (type === 'error') statusBox.classList.add('error');
+      if (type === 'success') statusBox.classList.add('success');
+    }
+
+    function resetConfirmationState() {
+      verifiedUser = null;
+      confirmPanel.classList.remove('active');
+      verifiedEmail.textContent = 'your account';
+      deleteConsent.checked = false;
+      confirmText.value = '';
+    }
+
+    authForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        setStatus('Please enter both email and password.', 'error');
+        return;
+      }
+
+      if (!authConsent.checked) {
+        setStatus('Please confirm the identity verification notice before continuing.', 'error');
+        return;
+      }
+
+      authButton.disabled = true;
+      deleteButton.disabled = true;
+      resetConfirmationState();
+      setStatus('Verifying account credentials...');
+
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) throw error;
+        if (!data?.user) throw new Error('We could not verify this account.');
+
+        verifiedUser = data.user;
+        verifiedEmail.textContent = data.user.email || email;
+        confirmPanel.classList.add('active');
+        deleteButton.disabled = false;
+
+        setStatus('Account verified. Review the final confirmation section to continue.', 'success');
+      } catch (error) {
+        console.error(error);
+        setStatus(error.message || 'Verification failed. Please check your credentials and try again.', 'error');
+      } finally {
+        authButton.disabled = false;
+      }
+    });
+
+    deleteButton.addEventListener('click', async () => {
+      if (!verifiedUser) {
+        setStatus('Please verify your account first.', 'error');
+        return;
+      }
+
+      if (!deleteConsent.checked) {
+        setStatus('Please acknowledge the final deletion confirmation before continuing.', 'error');
+        return;
+      }
+
+      if (confirmText.value.trim() !== 'DELETE') {
+        setStatus('Type DELETE exactly to confirm this permanent request.', 'error');
+        return;
+      }
+
+      deleteButton.disabled = true;
+      cancelButton.disabled = true;
+      setStatus('Submitting deletion request...');
+
+      try {
+        const { data, error } = await supabase.functions.invoke(DELETE_FUNCTION_NAME, {
+          body: {
+            confirm: true
+          }
+        });
+
+        if (error) throw error;
+
+        await supabase.auth.signOut();
+
+        setStatus(
+          data?.message || 'Your deletion request was accepted and your account removal has been initiated.',
+          'success'
+        );
+
+        authForm.reset();
+        resetConfirmationState();
+      } catch (error) {
+        console.error(error);
+        setStatus(
+          error.message || 'We could not complete the deletion request. Please try again or contact support.',
+          'error'
+        );
+      } finally {
+        deleteButton.disabled = false;
+        cancelButton.disabled = false;
+      }
+    });
+
+    cancelButton.addEventListener('click', async () => {
+      resetConfirmationState();
+      try {
+        await supabase.auth.signOut();
+      } catch (error) {
+        console.error(error);
+      }
+      setStatus('Deletion request canceled. No account data was removed.');
+    });
+  </script>
+  <footer class="site-footer">© 2026 Crowe's Nest Productions</footer>
 </body>
 </html>
