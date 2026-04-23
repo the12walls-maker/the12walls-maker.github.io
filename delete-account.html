@@ -32,6 +32,7 @@
     .form-grid {
       display: grid;
       gap: 0.95rem;
+      justify-items: stretch;
     }
 
     .field {
@@ -226,12 +227,14 @@
     }
 
     .check-row input[type="checkbox"] {
-      margin-top: 0.2rem;
+      margin: 0.2rem 0 0 0;
       flex: 0 0 auto;
     }
     
     .check-row label {
-      flex: 1;
+      display: block;
+      flex: 1 1 auto;
+      margin: 0;
       text-align: left;
     }
   </style>
