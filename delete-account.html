@@ -188,6 +188,52 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .results-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .results-subcard {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(30, 28, 26, 0.02);
+    }
+
+    .results-subcard h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+    }
+
+    .results-list {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .results-list li + li {
+      margin-top: 0.35rem;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+      gap: 0.7rem;
+      width: 100%;
+    }
+
+    .check-row input[type="checkbox"] {
+      margin-top: 0.2rem;
+      flex: 0 0 auto;
+    }
+    
+    .check-row label {
+      flex: 1;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -278,6 +324,12 @@
           <article id="status-box" class="status-box" aria-live="polite">
             Enter your email and password to verify your account before continuing.
           </article>
+          <article id="results-panel" class="card confirm-panel">
+            <h2>Deletion summary</h2>
+            <p class="small-text">After your account is deleted, this page will show a summary of the data and files removed.</p>
+            <div id="results-meta" class="small-text muted"></div>
+            <div id="results-content" class="small-text"></div>
+          </article>
         </div>
 
         <div class="stack">
@@ -329,6 +381,9 @@
     const confirmText = document.getElementById('confirm-text');
     const verifiedEmail = document.getElementById('verified-email');
     const statusBox = document.getElementById('status-box');
+    const resultsPanel = document.getElementById('results-panel');
+    const resultsMeta = document.getElementById('results-meta');
+    const resultsContent = document.getElementById('results-content');
 
     let verifiedUser = null;
 
@@ -346,7 +401,113 @@
       deleteConsent.checked = false;
       confirmText.value = '';
     }
+    function clearResults() {
+      resultsPanel.classList.remove('active');
+      resultsMeta.innerHTML = '';
+      resultsContent.innerHTML = '';
+    }
 
+    function formatResults(summary, deletedAt, emailSent, emailWarning) {
+      const categoryItems = (summary?.categories || [])
+        .filter(item => Number(item.rowsDeleted) > 0)
+        .map(item => `
+          <li>
+            <strong>${escapeHtml(item.category)}:</strong>
+            ${Number(item.rowsDeleted).toLocaleString()} removed
+            <span class="muted">(${escapeHtml((item.dataTypes || []).join(', '))})</span>
+          </li>
+        `)
+        .join('');
+    
+      const tableItems = (summary?.tables || [])
+        .filter(item => Number(item.rowsDeleted) > 0)
+        .slice(0, 20)
+        .map(item => `
+          <li>
+            <strong>${escapeHtml(item.dataType)}:</strong>
+            ${Number(item.rowsDeleted).toLocaleString()} removed
+            <span class="muted">(${escapeHtml(item.category)})</span>
+          </li>
+        `)
+        .join('');
+
+      const storageItems = (summary?.storage || [])
+        .filter(item => Number(item.filesDeleted) > 0)
+        .map(item => `
+          <li>
+            <strong>${escapeHtml(item.bucket)}:</strong>
+            ${Number(item.filesDeleted).toLocaleString()} files removed from folder
+            <code class="inline-code">${escapeHtml(item.folder)}</code>
+          </li>
+        `)
+        .join('');
+    
+      const retainedItems = (summary?.retained || [])
+        .filter(item => Number(item.count) > 0)
+        .map(item => `
+          <li>
+            <strong>${escapeHtml(item.label)}:</strong>
+            ${Number(item.count).toLocaleString()} retained
+            <span class="muted">(${escapeHtml(item.reason)})</span>
+          </li>
+    `)
+        .join('');
+
+      const totalRows = (summary?.tables || []).reduce(
+        (sum, item) => sum + Number(item.rowsDeleted || 0),
+        0
+      );
+    
+      const totalFiles = (summary?.storage || []).reduce(
+        (sum, item) => sum + Number(item.filesDeleted || 0),
+        0
+      );
+    
+      resultsMeta.innerHTML = `
+        <p><strong>Completed:</strong> ${deletedAt ? escapeHtml(new Date(deletedAt).toLocaleString()) : 'Just now'}</p>
+        <p><strong>Database items removed:</strong> ${totalRows.toLocaleString()}</p>
+        <p><strong>Storage files removed:</strong> ${totalFiles.toLocaleString()}</p>
+        <p><strong>Sole-owner businesses removed:</strong> ${Number(summary?.soleOwnedBusinessCount || 0).toLocaleString()}</p>
+        <p><strong>Shared businesses preserved:</strong> ${Number(summary?.sharedBusinessCount || 0).toLocaleString()}</p>
+        <p><strong>Email recap sent:</strong> ${emailSent ? 'Yes' : 'No'}</p>
+        ${emailWarning ? `<p><strong>Email note:</strong> ${escapeHtml(emailWarning)}</p>` : ''}
+      `;
+    
+      resultsContent.innerHTML = `
+        <div class="results-grid">
+          <div class="results-subcard">
+            <h3>By category</h3>
+            ${categoryItems ? `<ul class="results-list">${categoryItems}</ul>` : '<p>No grouped deletion counts were returned.</p>'}
+          </div>
+    
+          <div class="results-subcard">
+            <h3>Top deleted data types</h3>
+            ${tableItems ? `<ul class="results-list">${tableItems}</ul>` : '<p>No detailed table counts were returned.</p>'}
+          </div>
+    
+          <div class="results-subcard">
+            <h3>Storage files removed</h3>
+            ${storageItems ? `<ul class="results-list">${storageItems}</ul>` : '<p>No storage files were found in the configured user folders.</p>'}
+          </div>
+    
+          <div class="results-subcard">
+            <h3>Retained where required</h3>
+            ${retainedItems ? `<ul class="results-list">${retainedItems}</ul>` : '<p>No retained-item notices were returned.</p>'}
+          </div>
+        </div>
+      `;
+    
+      resultsPanel.classList.add('active');
+    }
+    
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
     authForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -366,6 +527,7 @@
       authButton.disabled = true;
       deleteButton.disabled = true;
       resetConfirmationState();
+      clearResults();
       setStatus('Verifying account credentials...');
 
       try {
@@ -426,7 +588,12 @@
           data?.message || 'Your deletion request was accepted and your account removal has been initiated.',
           'success'
         );
-
+        formatResults(
+          data?.cleanupSummary || {},
+          data?.deletedAt,
+          data?.emailSent,
+          data?.emailWarning || null
+        );
         authForm.reset();
         resetConfirmationState();
       } catch (error) {
@@ -448,6 +615,7 @@
       } catch (error) {
         console.error(error);
       }
+      clearResults();
       setStatus('Deletion request canceled. No account data was removed.');
     });
   </script>
