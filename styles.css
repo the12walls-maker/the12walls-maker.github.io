@@ -50,6 +50,13 @@ img,svg{display:block}
 
 /*.logo-mark{width:28px;height:28px;flex:0 0 auto}*/
 
+.hero-logo {
+  width: 220px;      /* Change this size anytime */
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem auto;   /* centered with spacing below */
+}
+
 .site-nav{
   display:flex;
   flex-wrap:wrap;
